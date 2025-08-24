@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import Jobs from "./pages/Jobs";
 import ApplyForm from "./pages/ApplyForm";
 
@@ -22,33 +22,35 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Opportunities at Lincoln Commercial Solutions, LLC</h1>
-      <nav style={{ marginBottom: "20px" }}>
-        <Link 
-          to="/" 
-          style={linkStyle}
-          onMouseEnter={e => Object.assign(e.target.style, linkHover)}
-          onMouseLeave={e => Object.assign(e.target.style, linkStyle)}
-        >
-          Home
-        </Link>
-        <Link 
-          to="/jobs" 
-          style={linkStyle}
-          onMouseEnter={e => Object.assign(e.target.style, linkHover)}
-          onMouseLeave={e => Object.assign(e.target.style, linkStyle)}
-        >
-          Opportunities
-        </Link>
-      </nav>
+    <Router>
+      <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+        <h1>Opportunities at Lincoln Commercial Solutions, LLC</h1>
+        <nav style={{ marginBottom: "20px" }}>
+          <Link 
+            to="/" 
+            style={linkStyle}
+            onMouseEnter={e => Object.assign(e.target.style, linkHover)}
+            onMouseLeave={e => Object.assign(e.target.style, linkStyle)}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/jobs" 
+            style={linkStyle}
+            onMouseEnter={e => Object.assign(e.target.style, linkHover)}
+            onMouseLeave={e => Object.assign(e.target.style, linkStyle)}
+          >
+            Opportunities
+          </Link>
+        </nav>
 
-      <Routes>
-        {/* Redirect / to /jobs */}
-        <Route path="/" element={<Navigate to="/jobs" />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/apply/:id" element={<ApplyForm />} />
-      </Routes>
-    </div>
+        <Routes>
+          {/* Redirect / to /jobs */}
+          <Route path="/" element={<Navigate to="/jobs" />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/apply/:id" element={<ApplyForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
